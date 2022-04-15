@@ -17,7 +17,7 @@ class PaymentService {
     if (!paymentEntity.validate()) { throw new ApiError(400, 'Missing required  fields'); }
 
     const newPayment = await this.paymentRepo.create(paymentEntity);
-    //await this.mailerService.sendMail(paymentEntity);
+    // await this.mailerService.sendMail(paymentEntity);
     return new PaymentEntity(newPayment);
   }
 

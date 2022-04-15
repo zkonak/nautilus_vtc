@@ -18,6 +18,10 @@ class ServiceRepository {
     return await this.serviceDAO.findOne({ where: { id: serviceEntity.id } });
   }
 
+  async findPrice(serviceEntity) {
+    return await this.serviceDAO.findOne({ where: { name: serviceEntity.name, carTypeId: serviceEntity.carTypeId } });
+  }
+
   async update(serviceEntity) {
     return await this.serviceDAO.update(serviceEntity);
   }

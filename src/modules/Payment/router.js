@@ -10,6 +10,7 @@ class PaymentRouter {
       .get(paymentController.getAllByReservation)
       .post(paymentController.register)
       .patch(paymentController.update);
+    this.router.route('/payment/download').post(paymentController.downloadInvoice);
   }
 }
 

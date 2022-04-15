@@ -1,5 +1,6 @@
 /* eslint-disable no-return-await */
-import bcrypt from 'bcrypt';
+import { UserDao } from "../User";
+
 
 class ReservationRepository {
   constructor(reservationDao) {
@@ -15,7 +16,12 @@ class ReservationRepository {
   }
 
   async findById(reservationEntity) {
-    return await this.reservationDAO.findOne({ where: { id: reservationEntity.id } });
+    return await this.reservationDAO.findOne({
+      where: { id: reservationEntity.id },
+      include: [{
+        model: UserDao,
+      }],
+    });
   }
 
   async findByUser(reservationEntity) {

@@ -6,7 +6,11 @@ class AuthMiddleware {
 
     authenticate = async (req, res, next) => {
         try {
-            const token = req.cookies['auth-cookie'];
+            //const token = req.cookies['auth-cookie'];
+            const authHeader = req.headers['authorization'];
+            const token = authHeader && authHeader.split(' ')[1];
+          
+            if (token == null) return res.sendStatus(401);
 
             if (!token) {
                 return res.status(401).json('Access denied. Your session expired');
@@ -23,6 +27,13 @@ class AuthMiddleware {
             return res.status(401).json('Authentication failed : \n' + e);
         }
     }
+
+   
+
+
+
+
+
 }
 
 export default AuthMiddleware;

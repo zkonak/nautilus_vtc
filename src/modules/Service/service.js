@@ -28,6 +28,12 @@ class ServiceService {
     return service;
   }
 
+  async getByName(serviceData) {
+    const serviceEntity = new ServiceEntity(serviceData);
+    const service = await this.serviceRepo.findByName(serviceEntity);
+    return service;
+  }
+
   async update(serviceData) {
     const serviceEntity = new ServiceEntity(serviceData);
     if (!serviceEntity.validate()) { throw new ApiError(400, 'Missing required  fields'); }
