@@ -11,3 +11,4 @@ const auth = new AuthMiddleware(jwtService);
 
 // export all middlewares
 export {auth, csrf};
+export default auth;

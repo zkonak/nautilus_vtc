@@ -6,7 +6,6 @@ class UserController {
 
   getAll = async ({ req, res, next }) => {
     try {
-      console.log('aaaaaaaaaaaaaa');
       const users = await this.userService.getAll();
       res.status(200).json(users);
     } catch (err) {
@@ -71,11 +70,30 @@ class UserController {
     try {
       const user = await this.userService.login({ ...req.body });
       const token = await this.jwtService.generateToken({ id: user.id });
-      res.cookie('auth-cookie', token, { expires: false });
-      res.status(200).json(user);
+      const refreshToken = await this.jwtService.generateRefreshToken({ id: user.id });
+      // res.cookie('auth-cookie', token, { expires: false });
+      res.status(200).json({ user, token, refreshToken });
     } catch (err) {
       next(err);
     }
+  };
+
+  // app.post('/api/refreshToken', (req, res) => {
+  refreshToken = async (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (token == null) return res.sendStatus(401);
+    try {
+      const decoded = await this.jwtService.decodeToken(token);
+    } catch (e) {
+
+    }
+
+    const refreshedToken =this.jwtService.generateAccessToken(decoded);
+    res.send({
+      accessToken: refreshedToken,
+    });
   };
 }
 

@@ -1,4 +1,4 @@
-class PackageEntity {
+class PaymentEntity {
   constructor({
     id, paymentType, totalPrice, facture, ReservationId,
   }) {
@@ -15,4 +15,4 @@ class PackageEntity {
   }
 }
 
-export default PackageEntity;
+export default PaymentEntity;

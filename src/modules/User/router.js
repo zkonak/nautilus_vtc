@@ -12,6 +12,7 @@ class UserRouter {
       //.patch(userController.update)
       .delete(userController.delete);
     this.router.route('/user/authenticate').post(userController.login);
+    
   }
 }
 

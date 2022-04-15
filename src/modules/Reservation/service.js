@@ -1,5 +1,6 @@
 import ReservationEntity from './entity';
 import { ApiError } from '../../helpers/error';
+import ServiceRepository from '../Service/repository';
 
 class ReservationService {
   constructor(reservationRepository, mailerService) {
@@ -17,7 +18,7 @@ class ReservationService {
     if (!reservationEntity.validate()) { throw new ApiError(400, 'Missing  fields'); }
 
     const newReservation = await this.reservationRepo.create(reservationEntity);
-    //await this.mailerService.sendMail(reservationEntity);
+    // await this.mailerService.sendMail(reservationEntity);
     return new ReservationEntity(newReservation);
   }
 
@@ -48,6 +49,14 @@ class ReservationService {
 
     const reservationDeleted = reservation.delete(reservationEntity);
     return reservationDeleted;
+  }
+
+  async calcul(reservationData) {
+    reservationData.priceKM = ServiceRepository.findPrice({ name: 'KM', carTypeId: reservationData.carTypeId }).price;
+    if (!priceKM) { throw new ApiError(400, 'KM price not exists'); }
+    const distance = 10; // todo --calculation
+    reservationData.price = reservationData.priceKM * distance;
+    return reservationData;
   }
 }
 

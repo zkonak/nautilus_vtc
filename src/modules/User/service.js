@@ -17,7 +17,7 @@ class UserService {
     if (!userEntity.validate()) { throw new ApiError(400, 'Missing required  fields'); }
 
     const newUser = await this.userRepo.create(userEntity);
-    await this.mailerService.sendMail(userEntity, 'Creation du votre compte', 'Votre compte est créé');
+   // await this.mailerService.sendMail(userEntity, 'Creation du votre compte', 'Votre compte est créé');
     return new UserEntity(newUser);
   }
 
