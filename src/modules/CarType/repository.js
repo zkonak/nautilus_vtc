@@ -16,6 +16,7 @@ class CarTypeRepository {
   }
 
   async findById(carTypeEntity) {
+    console.log(carTypeEntity)
     return await this.carTypeDAO.findOne({ where: { id: carTypeEntity.id } });
   }
 

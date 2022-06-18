@@ -9,6 +9,7 @@ import { csrf } from './src/middlewares';
 import Logger from './src/helpers/logger';
 import routes from './src/modules';
 
+
 const logger = new Logger();
 const middlewares = { cookieParser, csrf, morgan };
 const application = new Server(express, routes, middlewares, logger);

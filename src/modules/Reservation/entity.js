@@ -20,10 +20,10 @@ class ReservationEntity {
     this.PackageId = PackageId;
   }
 
-  validate() {
-    if (!this.dateDepart || !this.timeDepart || !this.addressDepart || !this.addressDestination || !this.price || !this.UserId || !this.CarTypeId) return false;
-    return true;
-  }
+   validate() {
+  //   if (!this.dateDepart || !this.timeDepart || !this.addressDepart || !this.addressDestination || !this.price || !this.UserId || !this.CarTypeId) return false;
+     return true;
+ }
 }
 
 export default ReservationEntity;

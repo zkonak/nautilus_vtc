@@ -7,10 +7,12 @@ class CarTypeRouter {
 
   initializeRoutes(carTypeController, auth) {
     this.router.route('/carType')
-      .get(carTypeController.getOne)
+      .get(carTypeController.getAll)
       .post(carTypeController.register)
       .patch(carTypeController.update)
       .delete(carTypeController.delete);
+    this.router.route('/carType/get')
+      .get(carTypeController.getOne)
   }
 }
 

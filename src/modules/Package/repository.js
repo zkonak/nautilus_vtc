@@ -13,7 +13,7 @@ class PackageRepository {
   }
 
   async findById(packageEntity) {
-    return await this.packageDAO.findOne({ where: { id: packageEntity.id } });
+    return await this.packageDAO.findOne({ where: { id: packageEntity.id }, include: 'CarType' });
   }
 
   async update(packageEntity) {

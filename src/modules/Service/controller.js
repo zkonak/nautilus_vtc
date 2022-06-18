@@ -23,7 +23,7 @@ class ServiceController {
 
   getOne = async (req, res, next) => {
     try {
-      const service = await this.serviceService.getOne({ ...req.body });
+      const service = await this.serviceService.getOne({ ...req.query });
 
       res.status(201).json(service);
     } catch (err) {

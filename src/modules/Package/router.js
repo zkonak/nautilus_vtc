@@ -7,10 +7,11 @@ class PackageRouter {
 
   initializeRoutes(packageController, auth) {
     this.router.route('/package')
-      .get(packageController.getOne)
+      .get(packageController.getAll)
       .post(packageController.register)
       .patch(packageController.update)
       .delete(packageController.delete);
+      this.router.route('/package/get').get(packageController.getOne)
   }
 }
 

@@ -9,7 +9,7 @@ class ServiceService {
 
   async getAll() {
     const services = await this.serviceRepo.findAll();
-    return services.map((pack) => new ServiceEntity(pack));
+    return services;
   }
 
   async register(serviceData) {

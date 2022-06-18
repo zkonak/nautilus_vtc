@@ -49,6 +49,7 @@ class UserService {
 
   async login(userData) {
     const userEntity = new UserEntity(userData);
+    console.log(userEntity);
     if (!userEntity.validateLogin()) { throw new ApiError(400, 'Missing required mail and password  fields'); }
 
     const user = await this.userRepo.findByMail(userEntity);

@@ -33,7 +33,7 @@ class ReservationController {
 
   getAllByUser = async (req, res, next) => {
     try {
-      const service = await this.reservationService.getAllByUser({ ...req.body });
+      const service = await this.reservationService.getAllByUser({ ...req.query });
 
       res.status(201).json(service);
     } catch (err) {

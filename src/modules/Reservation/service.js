@@ -31,6 +31,7 @@ class ReservationService {
   async getAllByUser(reservationData) {
     const reservationEntity = new ReservationEntity(reservationData);
     const reservation = await this.reservationRepo.findByUser(reservationEntity);
+   
     return reservation;
   }
 
@@ -52,11 +53,32 @@ class ReservationService {
   }
 
   async calcul(reservationData) {
-    reservationData.priceKM = ServiceRepository.findPrice({ name: 'KM', carTypeId: reservationData.carTypeId }).price;
-    if (!priceKM) { throw new ApiError(400, 'KM price not exists'); }
     const distance = 10; // todo --calculation
-    reservationData.price = reservationData.priceKM * distance;
-    return reservationData;
+    const prices = reservationData.gamme;
+    console.log(reservationData);
+    // eslint-disable-next-line array-callback-return
+    if (reservationData.reservation.type == '1') {
+      prices.map((item) => {
+        const price = item.priceKm * distance;
+        item.price = price;
+
+        prices[item.typeName] = price;
+        prices.carTypeId = item.id;
+      });
+    } else if (reservationData.type == '2') {
+      prices.map((item) => {
+        item.typeName = item.CarType.typeName;
+      });
+    } else if (reservationData.type == '3') {
+      prices.map((item) => {
+        const { price } = item;
+        prices[item.typeName] = price;
+        prices.carTypeId = item.carTypeId;
+      });
+    }
+    console.log('response', prices);
+
+    return prices;
   }
 }
 

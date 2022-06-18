@@ -1,3 +1,4 @@
+import cors from 'cors';
 import { handleError } from '../helpers/error';
 
 class Server {
@@ -19,11 +20,12 @@ class Server {
 
   initializeMiddlewares({ cookieParser, csrf, morgan }, logger) {
     this.app.use(cookieParser());
+    this.app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+
     this.app.use(morgan('combined', { stream: logger.stream }));
     this.app.get('/csrf', csrf, (req, res) => {
       res.status(200).json(req.csrfToken());
     });
-  
   }
 
   initializeApplicationRouter(routes) {

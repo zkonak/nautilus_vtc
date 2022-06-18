@@ -13,6 +13,8 @@ class ReservationRouter {
       .delete(auth.authenticate, reservationController.delete);
     this.router.route('/reservationAll')
       .get(auth.authenticate, reservationController.getAllByUser);
+    this.router.route('/reservationCalcul')
+      .post(auth.authenticate, reservationController.calcul);
   }
 }
 
