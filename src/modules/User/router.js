@@ -9,7 +9,7 @@ class UserRouter {
     this.router.route('/user')
       .get(userController.getOneByMail)
       .post(userController.register)
-      //.patch(userController.update)
+      .patch(userController.update)
       .delete(userController.delete);
     this.router.route('/user/authenticate').post(userController.login);
     

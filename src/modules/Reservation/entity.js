@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable max-len */
 class ReservationEntity {
   constructor({
     id, dateDepart, timeDepart, addressDepart, addressDestination, price, tax, priceKm, packageService,
@@ -20,10 +22,10 @@ class ReservationEntity {
     this.PackageId = PackageId;
   }
 
-   validate() {
+  validate() {
   //   if (!this.dateDepart || !this.timeDepart || !this.addressDepart || !this.addressDestination || !this.price || !this.UserId || !this.CarTypeId) return false;
-     return true;
- }
+    return true;
+  }
 }
 
 export default ReservationEntity;

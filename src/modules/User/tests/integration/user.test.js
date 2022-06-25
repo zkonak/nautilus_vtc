@@ -28,9 +28,8 @@ describe('user/post', () => {
     const res = await request(server.app)
       .post('/user')
       .send({
-        email: 'mo@GGGG.fr', password: 'waw', name: 'aa', lastname: 'aa', address: 'aa', tel: 'aa',
+        email: 'mo@GGGG.fr', password: 'waw', name: 'aa', lastname: 'aa', address: 'aa', tel: 'aa', type: '1',
       })
       .expect(201);
-    //expect(res.body.email).toBe('mo@GGGG.fr');
   });
 });

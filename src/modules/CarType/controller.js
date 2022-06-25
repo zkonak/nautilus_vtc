@@ -23,7 +23,7 @@ class CarTypeController {
 
   getOne = async (req, res, next) => {
     try {
-       console.log({ ...req.query })
+      console.log({ ...req.query });
       const service = await this.carTypeService.getOne({ ...req.query });
 
       res.status(201).json(service);
@@ -31,7 +31,6 @@ class CarTypeController {
       next(err);
     }
   };
-  
 
   update = async (req, res, next) => {
     try {

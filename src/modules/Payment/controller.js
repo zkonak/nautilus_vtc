@@ -60,9 +60,10 @@ class PaymentController {
 
   downloadInvoice = async (req, res, next) => {
     try {
-      const data = fs.readFileSync(`./files/Facture-${req.body.paymentId}.pdf`);
+      
+      const data = fs.readFileSync(__dirname+`/files/Facture-${req.body.paymentId}.pdf`);
       res.contentType('application/pdf');
-      res.status(201).send(data);
+      res.status(201).sendFile(__dirname+`/files/Facture-${req.body.paymentId}.pdf`);
     } catch (err) {
       next(err);
     }

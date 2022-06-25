@@ -1,4 +1,5 @@
 /* eslint-disable no-return-await */
+import { PaymentDao } from "../Payment";
 import { UserDao } from "../User";
 
 
@@ -25,7 +26,9 @@ class ReservationRepository {
   }
 
   async findByUser(reservationEntity) {
-    return await this.reservationDAO.findAll({ where: { UserId: reservationEntity.UserId } });
+    return await this.reservationDAO.findAll({ where: { UserId: reservationEntity.UserId },include: [{
+      model: PaymentDao,
+    }], });
   }
 
   async update(reservationEntity) {

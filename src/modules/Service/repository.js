@@ -1,5 +1,4 @@
 /* eslint-disable no-return-await */
-import bcrypt from 'bcrypt';
 
 class ServiceRepository {
   constructor(serviceDao) {
@@ -7,7 +6,7 @@ class ServiceRepository {
   }
 
   async findAll() {
-    return await this.serviceDAO.findAll({include: 'CarType'});
+    return await this.serviceDAO.findAll({ include: 'CarType' });
   }
 
   async create(serviceEntity) {
@@ -15,8 +14,7 @@ class ServiceRepository {
   }
 
   async findById(serviceEntity) {
-    
-    return await this.serviceDAO.findOne({ where: { id: serviceEntity.id },include: 'CarType'  });
+    return await this.serviceDAO.findOne({ where: { id: serviceEntity.id }, include: 'CarType' });
   }
 
   async findPrice(serviceEntity) {

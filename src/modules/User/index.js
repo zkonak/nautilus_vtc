@@ -1,7 +1,6 @@
-import {Router} from 'express';
-import {jwtService, mailerService} from '../../libs';
-import {auth} from '../../middlewares';
-
+import { Router } from 'express';
+import { jwtService, mailerService } from '../../libs';
+import { auth } from '../../middlewares';
 
 import UserDao from './dao';
 import UserRepository from './repository';
@@ -16,4 +15,4 @@ const userService = new UserService(userRepository, mailerService);
 const userController = new UserController(userService, jwtService);
 const userRouter = new UserRouter(router, auth, userController);
 
-export {userRouter, UserDao};
+export { userRouter, UserDao };

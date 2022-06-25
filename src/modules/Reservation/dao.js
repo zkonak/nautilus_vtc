@@ -28,6 +28,7 @@ class ReservationDao extends Model {
           this.belongsTo(models.User);
           this.belongsTo(models.Service);
           this.belongsTo(models.Package);
+          this.hasOne(models.Payment)
         return this;
     }
 };
