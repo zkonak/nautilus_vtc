@@ -1,7 +1,6 @@
 /* eslint-disable no-return-await */
-import { PaymentDao } from "../Payment";
 import { UserDao } from "../User";
-
+import { PaymentDao } from '../Payment';
 
 class ReservationRepository {
   constructor(reservationDao) {
@@ -9,7 +8,9 @@ class ReservationRepository {
   }
 
   async findAll() {
-    return await this.reservationDAO.findAll();
+    return await this.reservationDAO.findAll({include: [{
+      model: PaymentDao,
+    }], });
   }
 
   async create(reservationEntity) {

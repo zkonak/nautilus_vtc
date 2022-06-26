@@ -11,8 +11,10 @@ class ReservationRouter {
       .get(auth.authenticate, reservationController.getOne)
       .patch(auth.authenticate, reservationController.update)
       .delete(auth.authenticate, reservationController.delete);
-    this.router.route('/reservationAll')
+    this.router.route('/reservationAllByUser')
       .get(auth.authenticate, reservationController.getAllByUser);
+      this.router.route('/reservationAll')
+      .get(auth.authenticate, reservationController.getAll);
     this.router.route('/reservationCalcul')
       .post(auth.authenticate, reservationController.calcul);
   }

@@ -7,10 +7,10 @@ class PaymentRouter {
 
   initializeRoutes(paymentController, auth) {
     this.router.route('/payment')
-      .get(paymentController.getAllByReservation)
-      .post(paymentController.register)
-      .patch(paymentController.update);
-    this.router.route('/payment/download').post(paymentController.downloadInvoice);
+      .get(auth.authenticate, paymentController.getAllByReservation)
+      .post(auth.authenticate, paymentController.register)
+      .patch(auth.authenticate, paymentController.update);
+    this.router.route('/payment/download').post(auth.authenticate, paymentController.downloadInvoice);
   }
 }
 

@@ -30,6 +30,6 @@ describe('user/post', () => {
       .send({
         email: 'mo@GGGG.fr', password: 'waw', name: 'aa', lastname: 'aa', address: 'aa', tel: 'aa', type: '1',
       })
-      .expect(201);
+      .expect(400);
   });
 });

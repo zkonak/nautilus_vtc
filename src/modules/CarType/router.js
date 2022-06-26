@@ -8,9 +8,9 @@ class CarTypeRouter {
   initializeRoutes(carTypeController, auth) {
     this.router.route('/carType')
       .get(carTypeController.getAll)
-      .post(carTypeController.register)
-      .patch(carTypeController.update)
-      .delete(carTypeController.delete);
+      .post(auth.authenticate, carTypeController.register)
+      .patch(auth.authenticate, carTypeController.update)
+      .delete(auth.authenticate, carTypeController.delete);
     this.router.route('/carType/get')
       .get(carTypeController.getOne)
   }

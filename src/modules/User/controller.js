@@ -80,18 +80,16 @@ class UserController {
   // app.post('/api/refreshToken', (req, res) => {
   refreshToken = async (req, res, next) => {
     const authHeader = req.headers.authorization;
-    const token = authHeader && authHeader.split(' ')[1];
-
-    if (token == null) return res.sendStatus(401);
-    try {
-      const decoded = await this.jwtService.decodeToken(token);
-    } catch (e) {
-
-    }
-
-    const refreshedToken =this.jwtService.generateAccessToken(decoded);
-    res.send({
-      accessToken: refreshedToken,
+    const refreshtoken = authHeader && authHeader.split(' ')[1];
+    console.log("gelen token",refreshtoken)
+    if (refreshtoken == null) return res.sendStatus(401);
+    
+      const decoded = await this.jwtService.decodeToken(refreshtoken);
+  
+      //control refresh token
+      const accessToken =await this.jwtService.generateToken({ id: decoded.id });
+     res.send({
+      accessToken: accessToken,
     });
   };
 }

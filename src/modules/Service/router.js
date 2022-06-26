@@ -9,9 +9,9 @@ class ServiceRouter {
     initializeRoutes(serviceController, auth) {
         this.router.route('/service')
             .get(serviceController.getOne)
-            .post(serviceController.register)
-            .patch(serviceController.update)
-            .delete(serviceController.delete);
+            .post(auth.authenticate, serviceController.register)
+            .patch(auth.authenticate, serviceController.update)
+            .delete(auth.authenticate, serviceController.delete);
             this.router.route('/serviceAll')
             .get(serviceController.getAll)
         

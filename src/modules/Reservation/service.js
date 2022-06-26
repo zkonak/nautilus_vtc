@@ -12,7 +12,7 @@ class ReservationService {
 
   async getAll() {
     const reservations = await this.reservationRepo.findAll();
-    return reservations.map((pack) => new ReservationEntity(pack));
+    return reservations;
   }
 
   async register(reservationData) {

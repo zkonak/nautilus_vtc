@@ -7,13 +7,13 @@ class UserRouter {
 
   initializeRoutes(userController, auth) {
     this.router.route('/user')
-      .get(userController.getOneByMail)
+      .get(auth.authenticate, userController.getOneByMail)
       .post(userController.register)
-      .patch(userController.update)
-      .delete(userController.delete);
-    this.router.route('/user/authenticate').post(userController.login);
-    
-  }
+      .patch(auth.authenticate, userController.update)
+      .delete(auth.authenticate, userController.delete);
+    this.router.route('/user/authenticate').post( userController.login);
+    this.router.route('/user/auth/refresh').get(userController.refreshToken);
+ }
 }
 
 export default UserRouter;
