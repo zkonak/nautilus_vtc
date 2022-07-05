@@ -5,7 +5,7 @@ class PackageRepository {
   }
 
   async findAll() {
-    return await this.packageDAO.findAll();
+    return await this.packageDAO.findAll({ include: 'CarType' });
   }
 
   async create(packageEntity) {

@@ -10,7 +10,7 @@ class PaymentEntity {
   }
 
   validate() {
-    if (!this.paymentType || !this.totalPrice || !this.ReservationId) return false;
+   // if (!this.paymentType || !this.totalPrice || !this.reservationId) return false;
     return true;
   }
 }

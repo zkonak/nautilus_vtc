@@ -11,7 +11,7 @@ class ServiceEntity {
   }
 
   validate() {
-    if ( !this.name || !this.description || !this.price || !this.CarTypeId) return false;
+   //if ( !this.name || !this.description || !this.price || !this.CarTypeId) return false;
     return true;
   }
 }
