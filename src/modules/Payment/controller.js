@@ -20,6 +20,7 @@ class PaymentController {
     try {
       const paymentRegistry = await this.paymentService.register({ ...req.body });
       const data = await this.paymentService.getOne({ ...paymentRegistry });
+      console.log(data)
       const invoice = await invoiceData(data.dataValues.Reservation.dataValues.User.dataValues, data.dataValues.Reservation.dataValues, paymentRegistry);
       const ig = new InvoiceGenerator(invoice);
       ig.generate();
